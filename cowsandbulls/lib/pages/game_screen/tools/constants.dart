@@ -1,0 +1,1 @@
+const int amountNumbers = 4;
