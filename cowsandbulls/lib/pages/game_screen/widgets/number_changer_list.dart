@@ -58,12 +58,56 @@ class _NumberChangerListState extends State<NumberChangerList> {
       var bulls = 0;
       var cows = 0;
 
+
+
       for (var i = 0; i < amountNumbers; i++) {
         if (selectedNumbers[i] == int.parse(numberToGuess[i])) {
           bulls++;
         } else if (selectedNumbers.contains(int.parse(numberToGuess[i]))) {
           cows++;
         }
+      }
+
+      if (bulls == amountNumbers) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            '🎉Congratulations!🎉',
+            style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.green,
+            ),
+          ),
+          content: const Text(
+            'You won!',
+            style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+            ),
+          ),
+          actions: [
+            TextButton(
+          onPressed: () {
+            _handleResetButton();
+            Navigator.of(context).pop();
+          },
+          child: const Text(
+            'DISMISS',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
+            ),
+          ),
+            ),
+          ],
+        );
+          },
+        );
+        return;
       }
 
       var value = selectedNumbers.join();
@@ -89,7 +133,6 @@ class _NumberChangerListState extends State<NumberChangerList> {
 
   void _handleResetButton() {
     setState(() {
-      selectedNumbers = List.filled(amountNumbers, 1);
       tableRows = [];
       numberToGuess = _generateNumberToGuess();
     });

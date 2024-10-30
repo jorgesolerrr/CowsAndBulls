@@ -1,4 +1,5 @@
 import 'package:cowsandbulls/pages/game_screen/widgets/number_changer_list.dart';
+import 'package:cowsandbulls/pages/letter_screen/letter_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,19 @@ class GameScreen extends StatelessWidget {
         child: Center(
         child: NumberChangerList(),
       ),
-        )
+        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LetterScreen()),
+                          );
+                        },
+        foregroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 133, 113, 67),
+        child: const Icon(Icons.favorite),
+      ),
     );
   }
 }
